@@ -1,0 +1,55 @@
+@extends('layouts.app')
+
+@section('title', 'Homepage')
+
+@section('content')
+
+    {{-- HERO SECTION --}}
+    <div class="flex items-center px-8 py-16 gap-4">
+        <div class="max-w-md">
+            <h1 class="text-5xl font-black leading-tight">
+                PREMIER LEAGUE<br>KLUB 26/27
+            </h1
+            <p class="text-gray-500 mt-10 text-sm">
+                Kumpulan klub-klub yang berlaga di Premier League musim 2026/27.
+            </p>
+        </div>
+        <div class="ml-auto">
+            <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Premier_League_Logo.svg"
+                 alt="Premier League"
+                 class="w-[28rem]">
+        </div>
+    </div>
+
+    {{-- BANNER WARNA --}}
+    <div class="flex gap-4 px-8 mb-40">
+        <div class="flex flex-1">
+            <div class="h-24 flex-1 bg-cyan-400"></div>
+            <div class="h-24 flex-1 bg-pink-600"></div>
+        </div>
+        <div class="flex flex-1">
+            <div class="h-24 flex-1 bg-emerald-400"></div>
+            <div class="h-24 flex-1 bg-purple-950"></div>
+            <div class="h-24 flex-1 bg-pink-600"></div>
+        </div>
+    </div>
+
+    {{-- SECTION KLUB --}}
+    <div class="px-8 py-16 text-center">
+        <h2 class="text-2xl font-black mb-10">KLUB</h2>
+
+        <div class="grid grid-cols-4 gap-x-16 gap-y-12 max-w-none">
+            @foreach ($klubs as $klub)
+                <div>
+                    <img src="{{ asset('images/klub/' . $klub['logo']) }}"
+                         alt="{{ $klub['nama'] }}"
+                         class="w-28 h-28 mx-auto object-contain">
+                    <p class="mt-3 text-sm font-medium uppercase">{{ $klub['nama'] }}</p>
+                </div>
+            @endforeach
+        </div>
+
+        <button class="mt-12 border rounded-full px-8 py-3 text-sm">View All</button>
+    </div>
+
+@endsection
