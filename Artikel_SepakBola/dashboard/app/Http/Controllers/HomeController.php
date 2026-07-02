@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,6 +32,11 @@ class HomeController extends Controller
             ['nama' => 'Sunderland AFC', 'logo' => 'sunderland.png'],
         ];
 
-        return view('home', ['klubs' => $klubs]);
+        $articles = Article::latest()->take(3)->get();
+
+        return view('home', [
+            'klubs' => $klubs,
+            'articles' => $articles,
+        ]);
     }
 }
