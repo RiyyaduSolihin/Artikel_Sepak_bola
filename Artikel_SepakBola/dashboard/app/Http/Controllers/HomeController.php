@@ -29,7 +29,6 @@ class HomeController extends Controller
             ['nama' => 'Conventry City', 'logo' => 'conventry.png'],
             ['nama' => 'Leeds United', 'logo' => 'leeds.png'],
             ['nama' => 'Sunderland AFC', 'logo' => 'sunderland.png'],
-            
         ];
 
         return view('home', ['klubs' => $klubs]);

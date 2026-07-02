@@ -22,12 +22,10 @@
     </div>
 
     {{-- BANNER WARNA --}}
-    <div class="flex gap-4 px-8 mb-40">
+    <div class="flex px-8 mt-16 mb-16">
         <div class="flex flex-1">
             <div class="h-24 flex-1 bg-cyan-400"></div>
             <div class="h-24 flex-1 bg-pink-600"></div>
-        </div>
-        <div class="flex flex-1">
             <div class="h-24 flex-1 bg-emerald-400"></div>
             <div class="h-24 flex-1 bg-purple-950"></div>
             <div class="h-24 flex-1 bg-pink-600"></div>
@@ -35,21 +33,23 @@
     </div>
 
     {{-- SECTION KLUB --}}
-    <div class="px-8 py-16 text-center">
-        <h2 class="text-2xl font-black mb-10">KLUB</h2>
+        <div class="px-8 py-16 text-center" x-data="{ showAll: false }">
+            <h2 class="text-2xl font-black mb-10">KLUB</h2>
 
-        <div class="grid grid-cols-4 gap-x-16 gap-y-12 max-w-none">
-            @foreach ($klubs as $klub)
-                <div>
-                    <img src="{{ asset('images/klub/' . $klub['logo']) }}"
-                         alt="{{ $klub['nama'] }}"
-                         class="w-28 h-28 mx-auto object-contain">
-                    <p class="mt-3 text-sm font-medium uppercase">{{ $klub['nama'] }}</p>
-                </div>
-            @endforeach
+            <div class="grid grid-cols-4 gap-x-16 gap-y-12">
+                @foreach ($klubs as $index => $klub)
+                    <div x-show="showAll || {{ $index }} < 8">
+                        <img src="{{ asset('images/klub/' . $klub['logo']) }}"
+                            alt="{{ $klub['nama'] }}"
+                            class="w-28 h-28 mx-auto object-contain">
+                        <p class="mt-3 text-sm font-medium uppercase">{{ $klub['nama'] }}</p>
+                    </div>
+                @endforeach
+            </div>
+
+            <button @click="showAll = !showAll" class="mt-12 border rounded-full px-8 py-3 text-sm">
+                <span x-show="!showAll">View All</span>
+                <span x-show="showAll">Sembunyikan</span>
+            </button>
         </div>
-
-        <button class="mt-12 border rounded-full px-8 py-3 text-sm">View All</button>
-    </div>
-
 @endsection
